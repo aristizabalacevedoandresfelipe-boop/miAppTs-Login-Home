@@ -1,29 +1,35 @@
-import { StyleSheet, Text, View,  Button, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../StackNavigator';
 
-export default function Home() {
+type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+export default function Home({ navigation }: HomeProps) {
   return (
-    <View>
+    <View style={styles.container}>
+      <Text style={styles.title}>HOME</Text>
+      <Text style={styles.subtitle}>Selecciona una opción para continuar</Text>
 
-<TouchableOpacity style={styles.botonTexto}>
+<TouchableOpacity style={styles.botonTexto} onPress={() => navigation.navigate('Texto')}>
   <Text style={styles.textoBoton}>Texto</Text>
 </TouchableOpacity>
 
 
-<TouchableOpacity style={styles.botonInput}>
+<TouchableOpacity style={styles.botonInput} onPress={() => navigation.navigate('Input')}>
   <Text style={styles.textoBoton}>Input</Text>
 </TouchableOpacity>
 
 
-<TouchableOpacity style={styles.botonBoton}>
+<TouchableOpacity style={styles.botonBoton} onPress={() => navigation.navigate('Boton')}>
    <Text style={styles.textoBoton}>Boton</Text>
 </TouchableOpacity>
 
-<TouchableOpacity style={styles.botonLista}>
+<TouchableOpacity style={styles.botonLista} onPress={() => navigation.navigate('Lista')}>
    <Text style={styles.textoBoton}>Lista</Text>
 </TouchableOpacity>
 
-<TouchableOpacity style={styles.botonModal}>
+<TouchableOpacity style={styles.botonModal} onPress={() => navigation.navigate('Modal')}>
    <Text style={styles.textoBoton}>Modal</Text>
 </TouchableOpacity>
 
@@ -32,6 +38,26 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 24,
+    backgroundColor: '#F7F8FA',
+  },
+
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    color: '#202124',
+  },
+
+  subtitle: {
+    marginBottom: 24,
+    color: '#5F6368',
+  },
+
     botonTexto: {
     backgroundColor: '#1DC907',
     width: 250,

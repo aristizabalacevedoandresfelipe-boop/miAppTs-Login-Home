@@ -1,40 +1,41 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'; import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home  from './componente/Home';
-import Texto from './componente/Texto';
-import Input from './componente/Input';
-import Boton from './componente/Boton';
-import Lista from './componente/Lista';
-import EjemploModal from './componente/EjemploModal';
-import Login from './componente/Login';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from '../pantallas/Home';
+import Login from '../pantallas/Login';
+import Registro from '../pantallas/Registro';
+import Clientes from '../pantallas/Clientes';
+import Motos from '../pantallas/Motos';
+import NuevaVenta from '../pantallas/NuevaVenta';
+import Ventas from '../pantallas/Ventas';
+import DetalleVenta from '../pantallas/DetalleVenta';
 
 export type RootStackParamList = {
-  Home: undefined;
   Login: undefined;
-  Texto: undefined;
-  Input: undefined;
-  Boton: undefined;
-  Lista: undefined;
-  Modal: undefined;
+  Registro: undefined;
+  Home: undefined;
+  Clientes: undefined;
+  Motos: undefined;
+  NuevaVenta: undefined;
+  Ventas: undefined;
+  DetalleVenta: { idEnc: number };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function StackNavigator() {
   return (
-<NavigationContainer>
-  <Stack.Navigator initialRouteName="Login">
-     <Stack.Screen  name="Home"  component= {Home} options={{ title: 'PRUEBA'}}/>
-    <Stack.Screen  name="Login" component={Login}/>
-     <Stack.Screen  name="Texto" component={Texto}/>
-     <Stack.Screen  name="Input" component={Input}/>
-     <Stack.Screen  name="Boton" component={Boton}/>
-     <Stack.Screen  name="Lista" component={Lista}/>
-     <Stack.Screen  name="Modal" component={EjemploModal}/>
-   </Stack.Navigator>
-</NavigationContainer>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={Login} options={{ title: 'Iniciar sesión' }} />
+        <Stack.Screen name="Registro" component={Registro} options={{ title: 'Crear cuenta' }} />
+        <Stack.Screen name="Home" component={Home} options={{ title: 'Concesionario de motos', headerBackVisible: false }} />
+        <Stack.Screen name="Clientes" component={Clientes} />
+        <Stack.Screen name="Motos" component={Motos} options={{ title: 'Inventario de motos' }} />
+        <Stack.Screen name="NuevaVenta" component={NuevaVenta} options={{ title: 'Nueva venta' }} />
+        <Stack.Screen name="Ventas" component={Ventas} options={{ title: 'Ventas' }} />
+        <Stack.Screen name="DetalleVenta" component={DetalleVenta} options={{ title: 'Detalle de venta' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
-
-const styles = StyleSheet.create({})
